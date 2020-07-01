@@ -16,7 +16,7 @@ This is why we started working on IOXY. We put a lot of effort in this tool, and
 
 The only prerequisite for using IOXY is a [working Golang environment](https://golang.org/doc/install). Then, just clone the repo and build the IOXY binary:
 
-    git clone https://github.com/NVISO-BE/internet-of-things/tree/Embedded_verification_tool/ioxy
+    git clone https://github.com/NVISO-BE/IOXY
     cd ioxy/ioxy && go build .
 
 Finally, fire up the GUI and use the Settings screen to set up the intercepting server: 
@@ -54,7 +54,7 @@ Check the examples below for a walkthrough on IOXY's features.
 
 ### AWS
 
-- [AWS PubSub ALPN RolePlay](https://github.com/NVISO-BE/internet-of-things/tree/Embedded_verification_tool/ioxy/examples/aws/aws_pub_sub_case)
+- [AWS PubSub ALPN RolePlay](https://github.com/NVISO-BE/internet-of-things/IOXY/examples/aws/aws_pub_sub_case)
 
 ## Features
 
