@@ -1,7 +1,7 @@
 # AWS ALPN Example
 ⚠️ **The following example shows how to set up IOXY in a complicated use-case of MQTTS using certificate-based authentication in AWS.**<br>
 
-The example doesn't use all the features of [IOXY](https://github.com/NVISO-BE/internet-of-things/tree/Embedded_verification_tool/ioxy), like live message interception, but feel free to try them :)
+The example doesn't use all the features of [IOXY](https://github.com/NVISO-BE/IOXY), like live message interception, but feel free to try them :)
 
 ## Setup
 
@@ -58,7 +58,7 @@ We notice that the device is trying to send / receive messages on evil/rock topi
 ## Using IOXY
 
 After some analysis, we know that the evilPubSub sends MQTT messages on AWS. It would be very interesting to read the messages.<br>
-Happily, a friend of us developed an awesome tool called [IOXY](https://github.com/NVISO-BE/internet-of-things/tree/Embedded_verification_tool/ioxy) to intercept MQTT messages stealthily.
+Happily, a friend of us developed an awesome tool called [IOXY](https://github.com/NVISO-BE/IOXY) to intercept MQTT messages stealthily.
 
 ### Downloading the AWS client's certificate & key
 
@@ -88,7 +88,7 @@ hutchyy@hutchyy-VM:~/aws_evil_analysis
 
 We can easily obtain IOXY by cloning the repo and by using the power of Golang:
 
-    git clone https://github.com/NVISO-BE/internet-of-things/tree/Embedded_verification_tool/ioxy
+    git clone https://github.com/NVISO-BE/IOXY
     cd ~
     cd ioxy/ioxy && go build .
 
