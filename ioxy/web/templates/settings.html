@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>ioxy-gui</title>
+    <link rel="icon" type="image/png" sizes="1000x393" href="assets/img/ioxy.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/bootstrap4-toggle.css">
+    <link rel="stylesheet" href="assets/css/bootstrap4-toggle.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/wave.css">
+</head>
+
+<body>
+    <div class="d-flex mb-3">
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean sticky-top" style="width: 100%;background-color: rgb(239,239,239);">
+            <div class="container"><a class="navbar-brand" href="#">IOXY</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a id="applink" class="nav-link {{if ne .Proxy "Running"}}disableDiv{{end}}" href="/app">App</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/logs">Logs</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="/settings">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">{{if ne .Alert.Reason ""}}
+<div id="alert" role="alert" class="alert alert-{{.Alert.Color}}"><span><strong>{{.Alert.Reason}} : </strong>{{.Alert.Message}}</span>
+</div>
+{{end}}
+        <div class="card mb-4" style="width: 100%;">
+            <div class="card-header">
+                <h5 class="mb-0">Proxy status</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-column"><label id="Status">Status :&nbsp;{{.Proxy}}<br></label>
+                    <div class="d-flex">
+                        <div class="col-3 col-lg-1 p-0 mr-2"><button class="btn btn-success btn-block btn-sm" id="startProxy" type="button">Start</button></div>
+                        <div class="col-3 col-lg-1 p-0"><button class="btn btn-danger btn-block btn-sm" id="stopProxy" type="button">Stop</button></div>
+                    </div>
+                    <hr><label>MiTM Broker Mode &nbsp; &nbsp; :&nbsp;{{.ListenerMode}}<br></label><label>MiTM Broker Address &nbsp;:&nbsp;{{.ListenerAddr}}<br></label>{{if eq .ListenerMode "mqtts"}}
+    <div class="d-flex flex-column align-items-baseline mb-3">
+        <div class="mb-2"><label>CA Cert      : <br /></label><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#MITMCA" aria-expanded="false" aria-controls="MITMCA">show</button></div>
+        <div id="MITMCA" class="collapse">
+            <div class="card card-body"><pre>{{.MITMCerts.CA}}</pre></div>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-baseline mb-3">
+        <div class="mb-2"><label>Server key  : <br /></label><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#MITMServ" aria-expanded="false" aria-controls="MITMServ">show</button></div>
+        <div id="MITMServ" class="collapse">
+            <div class="card card-body"><pre>{{.MITMCerts.ServerKey}}</pre></div>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-baseline mb-3">
+        <div class="mb-2"><label>Client Cert  : <br /></label><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#MITMClient" aria-expanded="false" aria-controls="MITMClient">show</button></div>
+        <div id="MITMClient" class="collapse">
+            <div class="card card-body"><pre>{{.MITMCerts.ClientCert}}</pre></div>
+        </div>
+    </div>
+{{end}}
+                    <hr><label>Distant Broker Mode &nbsp; &nbsp;:&nbsp;{{.BrokerMode}}<br></label><label>Distant broker address :&nbsp;{{.BrokerAddr}}<br></label>{{if eq .BrokerMode "mqtts"}}
+    <div class="d-flex flex-column align-items-baseline mb-3">
+        <div class="mb-2"><label>CA Cert      : <br /></label><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseCA" aria-expanded="false" aria-controls="collapseCA">show</button></div>
+        <div id="collapseCA" class="collapse">
+            <div class="card card-body"><pre>{{.BrokerCerts.CA}}</pre></div>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-baseline mb-3">
+        <div class="mb-2"><label>Server key  : <br /></label><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseServ" aria-expanded="false" aria-controls="collapseServ">show</button></div>
+        <div id="collapseServ" class="collapse">
+            <div class="card card-body"><pre>{{.BrokerCerts.ServerKey}}</pre></div>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-baseline mb-3">
+        <div class="mb-2"><label>Client Cert  : <br /></label><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseClient" aria-expanded="false" aria-controls="collapseClient">show</button></div>
+        <div id="collapseClient" class="collapse">
+            <div class="card card-body"><pre>{{.BrokerCerts.ClientCert}}</pre></div>
+        </div>
+    </div>
+{{end}}
+                    <hr><label>Live payload modification :&nbsp;{{if .LivePayload}}enabled{{else}}disabled{{end}}<br></label></div>
+            </div>
+        </div>
+        <form class="d-flex flex-column justify-content-center align-items-center align-content-center {{ if eq .Proxy "Running"}}disableDiv{{end}}" id="settingsform" method="post" enctype="multipart/form-data">
+            <div class="card mb-4" style="width: 100%;">
+                <div class="card-header">
+                    <h5 class="mb-0">MiTM Broker setup</h5>
+                </div>
+                <div class="card-body">
+                    <div><label>Mode :&nbsp;</label><select class="form-control" id="options-eb"><option value="-" selected="">-</option><option value="mqtt">mqtt</option><option value="mqtts">mqtts</option><option value="http" disabled="">http</option><option value="https" disabled="">https</option></select></div>
+                    <div
+                        id="content-eb-mqtt" class="content-eb d-none">
+                        <div><label>Host :&nbsp;</label><input class="form-control" type="text" name="mqtt-eb-host"></div>
+                        <div><label>Port &nbsp;:&nbsp;</label><input class="form-control" type="text" name="mqtt-eb-port"></div>
+                </div>
+                <div id="content-eb-mqtts" class="content-eb d-none">
+                    <div><label>Host :&nbsp;</label><input class="form-control" type="text" name="mqtts-eb-host"></div>
+                    <div><label>Port &nbsp;:&nbsp;</label><input class="form-control" type="text" name="mqtts-eb-port"></div>
+                    <hr>
+                    <p><strong><br>Certificates management :<br></strong></p>
+                    <div><label>RootCa Cert &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;</label><input type="file" name="mqtts-eb-ca"></div>
+                    <div><label>MiTM Broker Key &nbsp;: &nbsp;</label><input type="file" name="mqtts-eb-serv"></div>
+                    <div><label>MiTM Broker Cert : &nbsp;</label><input type="file" name="mqtts-eb-client"></div>
+                </div>
+            </div>
+    </div>
+    <div class="card mb-4" style="width: 100%;">
+        <div class="card-header">
+            <h5 class="mb-0">Distant Broker setup</h5>
+        </div>
+        <div class="card-body">
+            <div><label>Mode :&nbsp;</label><select class="form-control" id="options-b"><option value="-" selected="">-</option><option value="mqtt">mqtt</option><option value="mqtts">mqtts</option><option value="http" disabled="">http</option><option value="https" disabled="">https</option></select></div>
+            <div
+                id="content-b-mqtt" class="content-b d-none">
+                <div><label>Host :&nbsp;</label><input class="form-control" type="text" name="mqtt-b-host"></div>
+                <div><label>Port &nbsp;:&nbsp;</label><input class="form-control" type="text" name="mqtt-b-port"></div>
+        </div>
+        <div id="content-b-mqtts" class="content-b d-none">
+            <div><label>Host :&nbsp;</label><input class="form-control" type="text" name="mqtts-b-host"></div>
+            <div><label>Port &nbsp;:&nbsp;</label><input class="form-control" type="text" name="mqtts-b-port"></div>
+            <div><label for="alpn">Amazon ALPN &nbsp;:&nbsp;</label><input type="checkbox" name="alpn" value="true"></div>
+            <hr>
+            <p><strong><br>Certificates mangament :<br></strong></p>
+            <div><label>CA cert : &nbsp; &nbsp; &nbsp;&nbsp;</label><input type="file" name="mqtts-b-ca"></div>
+            <div><label>Server key : &nbsp;</label><input type="file" name="mqtts-b-serv"></div>
+            <div><label>Client cert : &nbsp;&nbsp;</label><input type="file" name="mqtts-b-client"></div>
+        </div>
+    </div>
+    </div>
+    <div class="col p-0 col-12 col-lg-2 mb-2"><button class="btn btn-primary btn-block" type="submit">apply</button></div>
+    </form>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Fixed-navbar-starting-with-transparency.js"></script>
+    <script src="assets/js/settings.js"></script>
+</body>
+
+</html>

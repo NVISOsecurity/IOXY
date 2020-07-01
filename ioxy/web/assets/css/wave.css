@@ -1,0 +1,48 @@
+.waveLTR {
+  background: rgb(235,235,235);
+  background: linear-gradient(90deg, rgba(235,235,235,1) 20%, rgba(70,92,210,1) 50%, rgba(235,235,235,1) 80%);
+  background-size: 480% 480%;
+  -webkit-animation: waveLTR 0.5s ease infinite;
+  -moz-animation: waveLTR 0.5s ease infinite;
+  animation: waveLTR 0.5s ease infinite;
+}
+
+.waveRTL {
+  background: rgb(235,235,235);
+  background: linear-gradient(90deg, rgba(235,235,235,1) 20%, rgba(70,92,210,1) 50%, rgba(235,235,235,1) 80%);
+  background-size: 480% 480%;
+  -webkit-animation: waveRTL 0.5s ease infinite;
+  -moz-animation: waveRTL 0.5s ease infinite;
+  animation: waveRTL 0.5s ease infinite;
+}
+
+@keyframes wave {
+  0% {
+    /*background-position: 0% 50%;*/
+  }
+  50% {
+    /*background-position: 100% 51%;*/
+  }
+  100% {
+    /*background-position: 0% 50%;*/
+  }
+}
+
+@keyframes waveRTL {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes waveLTR {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

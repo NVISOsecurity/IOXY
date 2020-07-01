@@ -1,0 +1,12 @@
+.loggerStyle {
+  overflow: auto;
+  font-family: 'Inconsolata', monospace;
+  line-height: 2;
+  font-size: 0.8rem;
+}
+
+.disableDiv {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
