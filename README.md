@@ -54,7 +54,7 @@ Check the examples below for a walkthrough on IOXY's features.
 
 ### AWS
 
-- [AWS PubSub ALPN RolePlay](https://github.com/NVISO-BE/internet-of-things/IOXY/examples/aws/aws_pub_sub_case)
+- [AWS PubSub ALPN RolePlay](https://github.com/NVISO-BE/IOXY/tree/master/examples/aws/aws_pub_sub_case)
 
 ## Features
 
