@@ -116,7 +116,7 @@ Found a bug? Have an idea for a new feature? Please create an issue. We are moni
 
 ## Acknowledgments
 
-This project was made possible thanks to [Innoviris](http://innoviris.be/) and SCRATch, an [ITEA3](https://itea3.org/) project.
+This project was made possible thanks to [Innoviris](http://innoviris.be/) and [SCRATCh](https://scratch-itea3.eu/), an [ITEA3](https://itea3.org/) project.
 
 ![Innoviris logo](resources/img/innoviris.png)
 ![ITEA3 logo](resources/img/itea3.png)
