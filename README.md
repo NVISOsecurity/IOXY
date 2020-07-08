@@ -126,9 +126,9 @@ IOXY's GUI uses ["Gorilla WebSocket"](https://github.com/gorilla/websocket).
 
 ## Authors
 
-* **Julian Dotreppe** - *Initial work*
-* **Cédric Bassem** (cbassem) - Maintainer 
-* **Théo Rigas** (windBlaze) - Maintainer
+* **Julian Dotreppe** (hutchYy) - *Initial work*
+* Cédric Bassem (cbassem) - Maintainer 
+* Théo Rigas (windBlaze) - Maintainer
 
 ## Useful resources and documentation
 
