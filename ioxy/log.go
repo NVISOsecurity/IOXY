@@ -1,12 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
 	. "os"
 
-	"github.com/serverhorror/rog-go/reverse"
 	log "github.com/sirupsen/logrus"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
 )
@@ -29,22 +29,15 @@ func initializeLogging(logFile string) {
 
 func sessionLogs(logFile string) []string {
 	var file, err = OpenFile(logFile, O_RDWR|O_CREATE|O_APPEND, 0666)
+	defer file.Close()
 	var logs []string
 	if err != nil {
 		fmt.Println("Could Not Open Log File : " + err.Error())
+		//return []string{"Could Not Open Log File : " + err.Error()}
 	}
-	f := reverse.NewScanner(file)
-	var lastBackslash bool
+	f := bufio.NewScanner(file)
 	for f.Scan() {
-		if f.Text() == "" && lastBackslash {
-			break
-		}
-		if f.Text() == "" {
-			lastBackslash = true
-		} else {
-			lastBackslash = false
-			logs = append([]string{f.Text()}, logs...)
-		}
+		logs = append([]string{f.Text()}, logs...)
 	}
 	return logs
 }
