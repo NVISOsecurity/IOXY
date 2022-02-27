@@ -7,6 +7,7 @@ import (
 	"net"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 	"sync/atomic"
 
@@ -240,9 +241,15 @@ func mqttsListen() {
 func configureRootCAs(caCertPathFlag *string) *x509.CertPool {
 	// also load as bytes for x509
 	// Read in the cert file
-	x509certs, err := ioutil.ReadFile(*caCertPathFlag)
-	if err != nil {
-		log.Fatalf("Failed to append certificate to RootCAs: %v", err)
+	var x509certs []byte
+	if strings.Contains(*caCertPathFlag, "BEGIN CERTIFICATE") {
+		x509certs = []byte(*caCertPathFlag)
+	} else {
+		var err error
+		x509certs, err = ioutil.ReadFile(*caCertPathFlag)
+		if err != nil {
+			log.Fatalf("Failed to append certificate to RootCAs: %v", err)
+		}
 	}
 
 	// Get the SystemCertPool, continue with an empty pool on error
