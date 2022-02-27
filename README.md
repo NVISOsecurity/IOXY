@@ -14,8 +14,11 @@ This is why we started working on IOXY. We put a lot of effort in this tool, and
 
 ## Quick start
 
-> ⚠️ IMPORTANT NOTE ⚠️  
+> ⚠️ IMPORTANT NOTE ⚠️
+>
 > If you are using **Windows** to compile IOXY you might need to install TDM-GCC(http://tdm-gcc.tdragon.net/download)
+>
+> When using linux, you might encounter an issue when compiling IOXY, make sure you use the golang-go package instead of gccgo-go, see [here](https://github.com/NVISOsecurity/IOXY/issues/8) for more details.
 
 The only prerequisite for using IOXY is a [working Golang environment](https://golang.org/doc/install). Then, just clone the repo and build the IOXY binary:
 
