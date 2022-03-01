@@ -2,27 +2,33 @@
 
 # IOXY - MQTT intercepting proxy
 
-## What? 
+## What?
 
-IOXY (IoT + Proxy) is an MQTT intercepting proxy written in Golang. It supports MQTT, MQTTS and MQTT over WebSockets and has both a CLI and a GUI.  
+IOXY (IoT + Proxy) is an MQTT intercepting proxy written in Golang. It supports MQTT, MQTTS and MQTT over WebSockets and has both a CLI and a GUI.
 
-## Why? 
+## Why?
 
-We frequently perform security assessment on IoT devices using MQTT to communicate with their backend. We wanted a tool that allows us to intercept, inspect and tamper with MQTT communications with the same ease as other intercepting proxies, like Burp and Zap, do for HTTP. 
+We frequently perform security assessment on IoT devices using MQTT to communicate with their backend. We wanted a tool that allows us to intercept, inspect and tamper with MQTT communications with the same ease as other intercepting proxies, like Burp and Zap, do for HTTP.
 
-This is why we started working on IOXY. We put a lot of effort in this tool, and hope it will be useful to the community! 
+This is why we started working on IOXY. We put a lot of effort in this tool, and hope it will be useful to the community!
 
 ## Quick start
+
+> ⚠️ IMPORTANT NOTE ⚠️
+>
+> If you are using **Windows** to compile IOXY you might need to install TDM-GCC(http://tdm-gcc.tdragon.net/download)
+>
+> When using linux, you might encounter an issue when compiling IOXY, make sure you use the golang-go package instead of gccgo-go, see [here](https://github.com/NVISOsecurity/IOXY/issues/8) for more details.
 
 The only prerequisite for using IOXY is a [working Golang environment](https://golang.org/doc/install). Then, just clone the repo and build the IOXY binary:
 
     git clone https://github.com/NVISO-BE/IOXY
     cd IOXY/ioxy && go build .
 
-Finally, fire up the GUI and use the Settings screen to set up the intercepting server: 
+Finally, fire up the GUI and use the Settings screen to set up the intercepting server:
 
     ./ioxy gui
-    
+
 ## CLI
 
 ```
@@ -47,7 +53,7 @@ DCOMMAND :
 
 Run 'ioxy COMMAND -h' for more information on a command.
 ```
-    
+
 ## Examples
 
 Check the examples below for a walkthrough on IOXY's features.
@@ -58,12 +64,12 @@ Check the examples below for a walkthrough on IOXY's features.
 
 ## Features
 
-Below you'll find a quick overview of the features provided by IOXY. Legend: 
+Below you'll find a quick overview of the features provided by IOXY. Legend:
 
 ✅ Implemented, tested <br>
 ❓ Implemented, not tested
 
-* Gui ✅
+- Gui ✅
 
 <p float="left">
         <img src="resources/img/app.PNG" alt="app" width="400">
@@ -71,7 +77,7 @@ Below you'll find a quick overview of the features provided by IOXY. Legend:
         <img src="resources/img/log.PNG" alt="logs" width="400">
 </p>
 
-* Packet storing in SQLite Database ✅
+- Packet storing in SQLite Database ✅
 
         Tables
         ├── session_mgmt
@@ -88,29 +94,29 @@ Below you'll find a quick overview of the features provided by IOXY. Legend:
             ├── qos_flag
             └── timestamp
 
-* Live packet modification ✅
+- Live packet modification ✅
 
 <img src="resources/img/Intercept_example.gif" alt="messages table" width="500">
 
-* Amazon ALPN support ✅
+- Amazon ALPN support ✅
 
 ## Supported Protocols
 
 - Client → Proxy
 
-    ✅ MQTT<br>
-    ✅ MQTTS<br>
-    ❓ HTTP (WebSocket)<br>
-    ❓ HTTPS (Secure WebSocket)
+  ✅ MQTT<br>
+  ✅ MQTTS<br>
+  ❓ HTTP (WebSocket)<br>
+  ❓ HTTPS (Secure WebSocket)
 
 - Proxy → Broker
 
-    ✅ MQTT<br>
-    ✅ MQTTS<br>
-    ❓ HTTP (WebSocket)<br>
-    ❓ HTTPS (Secure WebSocket)
-    
-## Bugs and contributions 
+  ✅ MQTT<br>
+  ✅ MQTTS<br>
+  ❓ HTTP (WebSocket)<br>
+  ❓ HTTPS (Secure WebSocket)
+
+## Bugs and contributions
 
 Found a bug? Have an idea for a new feature? Please create an issue. We are monitoring the issue tracker and will follow up on any bug reports or new feature requests. More detailed information about code contributions to IOXY will be available soon.
 
@@ -126,18 +132,19 @@ IOXY's GUI uses ["Gorilla WebSocket"](https://github.com/gorilla/websocket).
 
 ## Authors
 
-* **Julian Dotreppe** (hutchYy) - *Initial work*
-* Cédric Bassem (cbassem) - Maintainer 
-* Théo Rigas (windBlaze) - Maintainer
+- **Julian Dotreppe** (hutchYy) - _Initial work_
+- Cédric Bassem (cbassem) - Maintainer
+- Théo Rigas (windBlaze) - Maintainer
 
 ## Useful resources and documentation
 
 #### Network Attacks GitHub
+
 - [Network Attacks Repository](https://github.com/rmusser01/Infosec_Reference/blob/master/Draft/Network_Attacks.md#mqtt)
 
-#### SANS 
+#### SANS
 
-* [SSL MITM](https://www.sans.org/reading-room/whitepapers/threats/ssl-man-in-the-middle-attacks-480)
+- [SSL MITM](https://www.sans.org/reading-room/whitepapers/threats/ssl-man-in-the-middle-attacks-480)
 
 #### AWS
 
