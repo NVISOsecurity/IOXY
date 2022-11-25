@@ -17,13 +17,20 @@ This is why we started working on IOXY. We put a lot of effort in this tool, and
 > ⚠️ IMPORTANT NOTE ⚠️
 >
 > If you are using **Windows** to compile IOXY you might need to install TDM-GCC(http://tdm-gcc.tdragon.net/download)
+
+The only prerequisite for using IOXY is a [working Golang environment](https://golang.org/doc/install). The steps below install Golang and build the IOXY binary, and have been tested on clean installation of Kali Linux (2022.03 x64):
+
+```bash
+sudo apt update && sudo apt install -y golang-go
+git clone https://github.com/NVISOsecurity/IOXY.git
+cd IOXY/ioxy
+CGO_CFLAGS="-g -O2 -Wno-return-local-addr" go build -ldflags="-s -w" .
+./ioxy gui
+```
+
+> ⚠️ NOTE ⚠️
 >
-> When using linux, you might encounter an issue when compiling IOXY, make sure you use the golang-go package instead of gccgo-go, see [here](https://github.com/NVISOsecurity/IOXY/issues/8) for more details.
-
-The only prerequisite for using IOXY is a [working Golang environment](https://golang.org/doc/install). Then, just clone the repo and build the IOXY binary:
-
-    git clone https://github.com/NVISO-BE/IOXY
-    cd IOXY/ioxy && go build .
+> On some architectures, compiling with the default Golang compiler causes a "panic: runtime error" crash when attempting to run IOXY. In case that happens, uninstall golang-go and install the gccgo-go compiler (sudo apt --purge autoremove golang-go & sudo apt install gccgo-go), then repeat the "go build" step. This should fix the crash. See https://github.com/NVISOsecurity/IOXY/issues/11 .
 
 Finally, fire up the GUI and use the Settings screen to set up the intercepting server:
 
