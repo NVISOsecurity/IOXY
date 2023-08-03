@@ -77,17 +77,20 @@ func (session *Session) forwardHalf(way string, c1 net.Conn, c2 net.Conn) {
 func (session *Session) DialOutbound() error {
 	addr := mqttBrokerHost + ":" + strconv.Itoa(mqttBrokerPort)
 	if mqttBrokerTLS {
-		cert, err := tls.X509KeyPair([]byte(mqttBrokerClientCert), []byte(mqttBrokerClientKey))
-		if err != nil {
-			log.Fatalf("server: loadkeys: %s", err)
-			return err
+		config := tls.Config{InsecureSkipVerify: true}
+		if mqttBrokerClientCert != "" && mqttBrokerClientKey != "" {
+			cert, err := tls.X509KeyPair([]byte(mqttBrokerClientCert), []byte(mqttBrokerClientKey))
+			if err != nil {
+				log.Fatalf("server: loadkeys: %s", err)
+				return err
+			}
+			config.Certificates = []tls.Certificate{cert}
+		} else {
+			log.Info("Establishing mqtts connection to upstream without client certificate")
 		}
-		var config tls.Config
 		if amazonMqttProtocol {
 			// Check if CA is needed
-			config = tls.Config{Certificates: []tls.Certificate{cert}, InsecureSkipVerify: true, NextProtos: []string{"x-amzn-mqtt-ca"}}
-		} else {
-			config = tls.Config{Certificates: []tls.Certificate{cert}, InsecureSkipVerify: true}
+			config.NextProtos = []string{"x-amzn-mqtt-ca"}
 		}
 		client, err := tls.Dial("tcp", addr, &config)
 		if err != nil {
