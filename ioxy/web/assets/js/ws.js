@@ -1,5 +1,12 @@
 //  Variables
-let socket = new WebSocket("ws://" + window.location.host + "/ws");
+function wsURI() {
+    if (window.location.protocol == "https:") {
+        return  "wss://" + window.location.host + "/ws";
+    }
+    return  "ws://" + window.location.host + "/ws";
+}
+
+let socket = new WebSocket(wsURI());
 socket.onopen = function (e) {
     appendInConsole("Connection with MOXY established");
 };
